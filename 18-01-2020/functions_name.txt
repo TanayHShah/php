@@ -1,0 +1,42 @@
+str_word_count(,key,'.');
+print_r();
+preg_match('',string);//expression match
+declare global inside a function
+@mysql_connect(, ,);//conncet to database
+$_SERVER['REMOTE_ADDR'];//ip address
+str_shuffle();
+substr(,start,end);
+strrev();
+similar_text(string1,string2,result)//check the percentage
+strlen();
+trim();//remove spaces from start and end
+htmlentities(addslashes());//add slashes to avoid parsing
+                
+                 21-01-2020
+
+$=array();
+$=array(=>asssigning values)
+$=array(=>array());
+echo $[''][];
+foreach($ as $element=>inner_array){echo $element for each($inner_array as $item}
+header.inc.php
+include '';
+require '';//require kills rest of the page
+require_once//check only once the file is called
+preg_match()//checking for spaces
+strlen();
+strtolower();
+strtoupper();
+$_GET[check form name]//form method get
+strpos();//find the char at position
+
+
+
+
+
+
+
+
+
+
+ 
