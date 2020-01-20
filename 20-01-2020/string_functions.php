@@ -1,0 +1,31 @@
+<?php
+$string = 'My name is Tanay .';
+$word_count = str_word_count($string, 0);
+echo '<br>Number of words in sentence are:' . $word_count . '<br>';
+$word_count1 = str_word_count($string, 0, '.');
+echo '<br>Number of words(including .) in sentence are:' . $word_count1 . '<br>';
+$word_array = str_word_count($string, 1);
+echo '<br>Array displayed in format of:';
+print_r($word_array);
+echo '<br>';
+$word_array1 = str_word_count($string, 1, '.');
+echo '<br>Array displayed(including .) in format of:';
+print_r($word_array1);
+echo '<br>';
+echo '<br>Number of characters inside the string are:' . strlen($string) . '<br>';
+echo '<br>Shuffling the string we get diffrent output on each refresh : ' . str_shuffle($string) . '<br>';
+$string1 = 'My name is abc .';
+similar_text($string, $string1, $result);
+echo '<br>The percentage of two strings i.e. ' . '"' . $string . '"' . ' & ' . '"' . $string1 . '"' . ' being similar is : ' . $result . '%<br>';
+echo '<br>The reverse of the string ' . '"' . $string . '"' . ' is = ' . strrev($string) . '<br>';
+echo '<br>Half of string ' . '"' . $string . '"' . ' is = ' . substr($string, 0, (strlen($string) / 2)) . '<br>';
+$string2 = 'Hello <strong>User</strong>';
+echo '<br>Before using addslashes the string is = ' . $string2 . '<br>';
+echo '<br> Aftr ussing addslashes we get = ' . htmlentities(addslashes($string2)).'<br>';
+$string3 = ' abc';
+echo '<br>Before using trim function : ';
+var_dump($string3);
+echo '<br>';
+echo '<br>After using trim function : ';
+var_dump(trim($string3));
+?>
