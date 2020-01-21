@@ -11,14 +11,16 @@
 </form>
 <?php
 error_reporting(0);
-$input_string = $_POST['input'];
-$sub_input_string = $_POST['sub_input'];
-$length = strlen($sub_input_string);
-$offset = 0;
-echo '<br>Input String is : ' . $input_string . '<br>';
-echo '<br>Sub-String to find is : ' . $sub_input_string . '<br>';
-while ($string_position = strpos($input_string, $sub_input_string, $offset)) {
-    echo '<br>' . $sub_input_string . ' found at postion ' . $string_position . '<br>';
-    $offset = $string_position + $length;
+if (isset($input_string) && isset($input_string)) {
+    $input_string = $_POST['input'];
+    $sub_input_string = $_POST['sub_input'];
+    $length = strlen($sub_input_string);
+    $offset = 0;
+    echo '<br>Input String is : ' . $input_string . '<br>';
+    echo '<br>Sub-String to find is : ' . $sub_input_string . '<br>';
+    while ($string_position = strpos($input_string, $sub_input_string, $offset)) {
+        echo '<br>' . $sub_input_string . ' found at postion ' . $string_position . '<br>';
+        $offset = $string_position + $length;
+    }
 }
 ?>
