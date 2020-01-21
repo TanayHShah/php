@@ -10,6 +10,7 @@
     <br><input type="submit">
 </form>
 <?php
+error_reporting(0);
 $input_string = $_POST['input'];
 $sub_input_string = $_POST['sub_input'];
 $length = strlen($sub_input_string);
