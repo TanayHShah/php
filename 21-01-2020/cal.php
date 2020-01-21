@@ -17,12 +17,14 @@
     <br><input type="submit">
 </form>
 <?php
-error_reporting(E_ALL ^ E_WARNING);
+error_reporting(0);
+
 $number1 = $_GET['value1'];
 
 $number2 = $_GET['value2'];
 
 $number3 = $_GET['value3'];
+
 
 switch ($number3) {
     case 1:
@@ -37,11 +39,11 @@ switch ($number3) {
     case 4:
         echo 'Division is:' . ($number1 / $number2);
         break;
-    case 5:
-        die();
-        break;
     default:
         echo 'Wrong choice';
 }
 
+if ($number3 === 5) {
+    echo 'Thank You For Using Calculator';
+}
 ?>
