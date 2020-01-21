@@ -10,7 +10,7 @@
 <p>3.Multiplication</p>
 <p>4.Division</p>
 <p>5.Exit</p>
-<form action="calculator.php" method="GET">
+<form action="cal.php" method="GET">
     <br><label>Enter the First number:</label><input type="number" name="value1" required><br>
     <br><label> the Second number:</label><input type="number" name="value2" required><br>
     <br><label> Enter the Your Choice:</label><input type="number" name="value3" min="1" max="5" required><br>
@@ -24,8 +24,8 @@ $number1 = $_GET['value1'];
 $number2 = $_GET['value2'];
 
 $number3 = $_GET['value3'];
-
-
+if(isset($number3) && $number3 !== '')
+{
 switch ($number3) {
     case 1:
         echo 'Sum is:' . ($number1 + $number2);
@@ -45,5 +45,6 @@ switch ($number3) {
 
 if ($number3 === 5) {
     echo 'Thank You For Using Calculator';
+}
 }
 ?>
