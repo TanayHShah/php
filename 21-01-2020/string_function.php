@@ -10,6 +10,7 @@
     <br><input type="submit">
 </form>
 <?php
+error_reporting(0);
 $user_name = $_GET['user'];
 $password = $_GET['password'];
 if(strtolower($user_name)==='user' && strtolower($password)==='password'){
