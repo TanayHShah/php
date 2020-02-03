@@ -1,0 +1,7 @@
+STRING POSITION
+It is used to find the position of the given input
+it gives number as output
+first place is equal to 0
+function:strpos()
+eg:$value=strpos($string,$character)
+It returns the position at which character is present in string.
