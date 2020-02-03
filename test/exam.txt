@@ -1,0 +1,3 @@
+arraycombine
+it is used to combined arrays.
+array_combine($array1,$array2)
