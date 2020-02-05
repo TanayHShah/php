@@ -226,7 +226,7 @@
             $conn = connect();
             $sql = $query = 'SELECT * FROM blog_post WHERE blog_id=blog_id';
             $result = mysqli_query($conn, $sql);
-            table_form($result, $array, 'customer_id');
+            table_form($result, $array, 'blog_id');
         }
         function check_last_key()
         {
@@ -238,11 +238,11 @@
         }
         function table_form($result, $array, $id)
         {
-            if ($id = 'category_id') {
+            if ($id == 'category_id') {
                 $update = 'update_category_form.php?id=';
                 $delete = 'delete_category.php?id=';
             }
-            if ($id = 'blog_id') {
+            if ($id == 'blog_id') {
                 $update = 'update_blog_form.php?id=';
                 $delete = 'delete_blog.php?id=';
             }
