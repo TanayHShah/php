@@ -30,8 +30,11 @@
     <div class="a">
         <a href="update_user.php">MY PROFILE</a>
     </div>
+    <div class="a">
+        <a href="log_out.php">LOGOUT</a>
+    </div>
     <div >
-        <a href="login_out.php">LOGOUT</a>
+        <a href="blog_page.php">BLOCK PAGE</a>
     </div>
     <div>
  <h2>BLOG CATEGORY</h2>  
