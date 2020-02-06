@@ -46,6 +46,9 @@ function getDatabasevalue($sectionName, $fieldName)
 
         if (empty($error)) {
             (isset($_POST[$section])) ?  check_function($section) : [];
+            if($section=='blog'){
+                transaction_table();
+            }
         }
     }
 
@@ -54,10 +57,17 @@ function getDatabasevalue($sectionName, $fieldName)
         switch ($key) {
             case 'First_Name':
             case 'Last_Name':
+            case 'Title':
                 if (preg_match('/^[A-Z a-z]*$/', $value) && !empty($value)) {
                     return 1;
                 }
                 break;
+                case 'Url':
+                    case 'Meta_Title':
+                        case 'Content':
+                        if(!is_numeric($value) && !empty($value))
+                        return 1;
+            break;
             case 'Prefix':
                 return 1;
                 break;

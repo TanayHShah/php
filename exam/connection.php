@@ -11,7 +11,7 @@
   <body>
       <?php
         $session = 0;
-        $array_category = ['category_id', 'parent_category_id', 'Parent_Category', 'Created_At'];
+        $array_category = ['category_id', 'parent_category_id', 'Parent_Category'];
         $array_category_update = ['Title', 'Meta_Title', 'Url', 'Content', 'parent_category_id'];
         $array_blog = ['blog_id', 'Title', 'Url', 'Content', 'Created_At'];
         $array_user = ['Prefix', 'First_Name', 'Last_Name', 'Mobile', 'Email', 'Password'];
@@ -32,13 +32,11 @@
         {
             $conn = connect();
             $string = implode(',', $column_name);
-            $time = time();
-            $day = date('d M Y @ H:i:s', $time);
             $value = $array;
             $value = '"' . implode('","', $value) . '"';
-            echo $sql1 = "INSERT INTO $tablename($string,Created_At) VALUES($value,'$day'); ";
+            $sql1 = "INSERT INTO $tablename($string) VALUES($value); ";
             if (mysqli_query($conn, $sql1)) {
-                echo 'SUCCESFULLY REGISTERED';
+                echo 'SUCCESFULLY REGISTERED<br>';
             } else {
                 echo mysqli_error($conn);
             }
@@ -344,9 +342,8 @@
                 $array[$table_id] = show_id();
                 $id = show_id();
             } else {
-                $array[$table_id] = implode('',check_last_key());
-                 $id= implode('',check_last_key());
-                 
+                $array[$table_id] = implode('', check_last_key());
+                $id = implode('', check_last_key());
             }
             $conn = connect();
             $string =  $column_name;
@@ -404,6 +401,39 @@
             } else {
                 echo mysqli_error($conn);
             }
+        }
+        function transaction_table()
+        {
+            $flag=[" "];
+            $value = [];
+            $name = [];
+            $id = implode('', check_last_key());
+            $conn = connect();
+            $sql1 = "SELECT blog_id FROM blog_post
+                    WHERE customer_id=$id
+                    ; ";
+            if (mysqli_query($conn, $sql1)) {
+                $result = mysqli_query($conn, $sql1);
+                $result = mysqli_fetch_all($result);
+                print_r($result);
+                foreach ($result as $fieldkey => $key) {
+                    array_push($value, implode($key));
+                }
+            } else {
+                echo mysqli_error($conn);
+            }
+            $value = sizeof($value) ;
+            if(!isset($_POST['display']['parent_blog_id']))
+            $_POST['display']['parent_blog_id']=$flag;
+            foreach ($_POST['display']['parent_blog_id'] as  $key) {
+                $conn = connect();
+                echo $sql1 = "INSERT INTO post_id(parent_category_id,blog_id) VALUES('$key','$value')
+                ; ";
+                if (!mysqli_query($conn, $sql1)) {
+                    echo mysqli_error($conn);
+                }
+            }
+            echo "TRANSACTION TABLE UPDATED";
         }
         ?>
   </body>

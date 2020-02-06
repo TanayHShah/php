@@ -11,13 +11,7 @@
 <body>
     <?php
       include 'registration_post.php';
-    if(!isset($_SESSION['id'])){
-        echo header("Location:login.php");
-    }
-  
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
+   
     ?>
    
         <h1>REGISTRATION FORM</h1>

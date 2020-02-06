@@ -30,7 +30,7 @@
         <div>
             <div>
                 <label>Parent blog</label>
-                <select name="parent_blog_id" multiple>
+                <select name="display[parent_blog_id][]" multiple>
                     <?php
                     $id = get_parent_id();
                     $name = get_parent_category();
