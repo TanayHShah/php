@@ -10,10 +10,11 @@
 
   <body>
       <?php
-      $session=0;
+        $session = 0;
         $array_category = ['category_id', 'parent_category_id', 'Parent_Category', 'Created_At'];
-        $array_category_update = ['Title', 'Meta_Title', 'Url','Content', 'parent_category_id'];
-        $array_blog = ['Title', 'Url', 'Content', 'image'];
+        $array_category_update = ['Title', 'Meta_Title', 'Url', 'Content', 'parent_category_id'];
+        $array_blog = ['blog_id', 'Title', 'Url', 'Content', 'Created_At'];
+        $array_user = ['Prefix', 'First_Name', 'Last_Name', 'Mobile', 'Email', 'Password'];
         function connect()
         {
             $localhost = 'localhost';
@@ -73,7 +74,7 @@
             $conn = connect();
             $email = $_POST['login']['Email'];
             $password = $_POST['login']['Password'];
-           $sql1 = "SELECT * from user WHERE Email= '$email'
+            $sql1 = "SELECT * from user WHERE Email= '$email'
              AND Password='$password'; ";
             if (mysqli_query($conn, $sql1)) {
 
@@ -91,8 +92,8 @@
                 if (return_row() == 0) {
                     echo  "ENTER VALID USERNAME AND PASSWORD";
                 } else {
-                    
-                    $session=set_ssession();
+
+                    $session = set_ssession();
                     return header("Location:blog_page.php");
                 }
             }
@@ -143,50 +144,7 @@
             if (isset($_POST['submit_category']))
                 insert_row('category', $array, $column_name);
         }
-        if (isset($_POST['submit_updated_category'])) {
-            $array = [];
-            $column_name = [];
-            foreach ($_POST['category'] as $fieldname => $values) {
-                array_push($column_name, $fieldname);
-            }
-            foreach ($_POST['category'] as $fieldname => $values) {
-                $array[$fieldname] = $values;
-            }
-            update('category', $array, $column_name);
-        }
-        if (isset($_POST['submit_updated_blog'])) {
-            $array = [];
-            $column_name = [];
-            foreach ($_POST['blog'] as $fieldname => $values) {
-                array_push($column_name, $fieldname);
-            }
-            foreach ($_POST['blog'] as $fieldname => $values) {
-                $array[$fieldname] = $values;
-            }
-            update('blog_post', $array, $column_name);
-        }
-        if (isset($_POST['delete_category'])) {
-            $array = [];
-            $column_name = [];
-            foreach ($_POST['category'] as $fieldname => $values) {
-                array_push($column_name, $fieldname);
-            }
-            foreach ($_POST['category'] as $fieldname => $values) {
-                $array[$fieldname] = $values;
-            }
-            delete_row('category', $array, $column_name);
-        }
-        if (isset($_POST['delete_blog'])) {
-            $array = [];
-            $column_name = [];
-            foreach ($_POST['blog'] as $fieldname => $values) {
-                array_push($column_name, $fieldname);
-            }
-            foreach ($_POST['blog'] as $fieldname => $values) {
-                $array[$fieldname] = $values;
-            }
-            delete_row('blog_post', $array, $column_name);
-        }
+
         function convert_blog_data()
         {
             $array = [];
@@ -198,10 +156,10 @@
                 array_push($column_name, $fieldname);
             }
             array_push($column_name, 'customer_id');
-           $value= check_last_key();
-            echo $array['customer_id'] =$value['customer_id'];
-           
-            
+            $value = check_last_key();
+            echo $array['customer_id'] = $value['customer_id'];
+
+
             if (isset($_POST['submit_blog']))
                 insert_row('blog_post', $array, $column_name);
         }
@@ -231,7 +189,7 @@
         function check_last_key()
         {
             $conn = connect();
-            $value=implode('',$_SESSION['id']);
+            $value = implode('', $_SESSION['id']);
             $sql = "SELECT customer_id FROM user Where customer_id=$value;";
             $var = mysqli_query($conn, $sql);
             return mysqli_fetch_assoc($var);
@@ -301,6 +259,16 @@
                 $id = $value;
                 return check_table($sectionname, $fieldname, $id, $tablename);
             }
+            if ($sectionname == 'register') {
+                $tablename = 'user';
+                if (isset($_GET['id'])) {
+                    $value = show_id();
+                } else {
+                    $value = check_last_key();
+                }
+                $id = $value;
+                return check_table($sectionname, $fieldname, $id, $tablename);
+            }
         }
         function show_id()
         {
@@ -316,6 +284,8 @@
                 case 'blog':
                     $table_id = 'blog_id';
                     break;
+                case 'register':
+                    $table_id = 'customer_id';
             }
             $conn = connect();
             $name = last_data($sectionname, $fieldname);
@@ -335,19 +305,27 @@
         }
         function last_data($sectionname, $fieldkey)
         {
-            if ($sectionname == 'category') {
-                global $array_category_update;
-                for ($i = 0; $i < sizeof($array_category_update); $i++) {
-                    if ($fieldkey == $array_category_update[$i])
-                        return $array_category_update[$i];
-                }
-            }
-            if ($sectionname == 'blog') {
-                global $array_blog;
-                for ($i = 0; $i < sizeof($array_blog); $i++) {
-                    if ($fieldkey == $array_blog[$i])
-                        return $array_blog[$i];
-                }
+            switch ($sectionname) {
+                case 'category':
+                    global $array_category_update;
+                    for ($i = 0; $i < sizeof($array_category_update); $i++) {
+                        if ($fieldkey == $array_category_update[$i])
+                            return $array_category_update[$i];
+                    }
+                    break;
+                case 'blog':
+                    global $array_blog;
+                    for ($i = 0; $i < sizeof($array_blog); $i++) {
+                        if ($fieldkey == $array_blog[$i])
+                            return $array_blog[$i];
+                    }
+                    break;
+                case 'register':
+                    global $array_user;
+                    for ($i = 0; $i < sizeof($array_user); $i++) {
+                        if ($fieldkey == $array_user[$i])
+                            return $array_user[$i];
+                    }
             }
         }
         function update($tablename, $array, $column_name)
@@ -359,26 +337,31 @@
                 case 'blog_post':
                     $table_id = 'blog_id';
                     break;
+                case 'user';
+                    $table_id = 'customer_id';
             }
             if (isset($_GET['id'])) {
                 $array[$table_id] = show_id();
                 $id = show_id();
-                global $array_category;
-                $conn = connect();
-                $string =  $column_name;
-                $value = $array;
-                foreach ($value as $fieldname => $values) {
-                    $sql1 = "UPDATE $tablename
+            } else {
+                $array[$table_id] = implode('',check_last_key());
+                 $id= implode('',check_last_key());
+                 
+            }
+            $conn = connect();
+            $string =  $column_name;
+            $value = $array;
+            foreach ($value as $fieldname => $values) {
+                $sql1 = "UPDATE $tablename
                     SET $fieldname='$values'
                     WHERE $table_id=$id
                     ; ";
 
-                    if (!mysqli_query($conn, $sql1)) {
-                        echo mysqli_error($conn);
-                    }
+                if (!mysqli_query($conn, $sql1)) {
+                    echo mysqli_error($conn);
                 }
-                echo "UPDATED SUCCESFULLY";
             }
+            echo "UPDATED SUCCESFULLY";
         }
         function delete_row($tablename, $array, $column_name)
         {
@@ -405,21 +388,22 @@
                 }
             }
         }
-        function set_ssession(){
+        function set_ssession()
+        {
             $conn = connect();
-                    $email = $_POST['login']['Email'];
-                    $password = $_POST['login']['Password'];
-                     $sql1 = "SELECT customer_id from user WHERE Email= '$email'
+            $email = $_POST['login']['Email'];
+            $password = $_POST['login']['Password'];
+            $sql1 = "SELECT customer_id from user WHERE Email= '$email'
                      AND Password='$password'; ";
-                      if (mysqli_query($conn, $sql1)) {
+            if (mysqli_query($conn, $sql1)) {
 
-                        $result = mysqli_query($conn, $sql1);
-                        $_SESSION['id']=mysqli_fetch_assoc($result);
-                       echo $value=implode('',$_SESSION['id']);
-                        return $value;
-                    } else {
-                        echo mysqli_error($conn);
-                    }
+                $result = mysqli_query($conn, $sql1);
+                $_SESSION['id'] = mysqli_fetch_assoc($result);
+                echo $value = implode('', $_SESSION['id']);
+                return $value;
+            } else {
+                echo mysqli_error($conn);
+            }
         }
         ?>
   </body>

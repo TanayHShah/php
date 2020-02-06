@@ -50,7 +50,7 @@
             <div>
                 <input type="submit" value="SUBMIT" name="submit_category">
             </div>
-            <input type="submit" value="UPDATE" name="submit_updated_category">
+           
 
     </form>
     <form action="category.php">

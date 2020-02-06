@@ -10,7 +10,7 @@
 
 <body>
     <?php
-    include 'registration_post.php';
+    require 'registration_post.php';
     if(!isset($_SESSION['id'])){
         echo header("Location:login.php");
     }

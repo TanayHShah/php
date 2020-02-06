@@ -17,7 +17,7 @@
     
     $array=[];
     ?>
-    <h2>ADD NEW CATEGORY</h2>
+    <h2>UPDATE CATEGORY</h2>
     <form method="POST">
         <div>
             <label>Title</label><input type="text" name="category[Title]"  value="<?php echo getvalue('category','Title')?>">

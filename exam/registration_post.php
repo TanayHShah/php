@@ -13,7 +13,7 @@
       session_start();
   
   
-    include 'connection.php';
+    require 'connection.php';
     $error = [];
     function getvalue($sectionName, $fieldName)
 {
@@ -91,7 +91,61 @@ function getDatabasevalue($sectionName, $fieldName)
     if (isset($_POST["submit_blog"])) {
         setDatabase('blog');
     }
-    check_action();
+    if (isset($_POST['submit_updated_category'])) {
+        $array = [];
+        $column_name = [];
+        foreach ($_POST['category'] as $fieldname => $values) {
+            array_push($column_name, $fieldname);
+        }
+        foreach ($_POST['category'] as $fieldname => $values) {
+            $array[$fieldname] = $values;
+        }
+        update('category', $array, $column_name);
+    }
+    if (isset($_POST['submit_updated_blog'])) {
+        $array = [];
+        $column_name = [];
+        foreach ($_POST['blog'] as $fieldname => $values) {
+            array_push($column_name, $fieldname);
+        }
+        foreach ($_POST['blog'] as $fieldname => $values) {
+            $array[$fieldname] = $values;
+        }
+        update('blog_post', $array, $column_name);
+    }
+    if (isset($_POST['update_user'])) {
+        $array = [];
+        $column_name = [];
+        foreach ($_POST['register'] as $fieldname => $values) {
+            array_push($column_name, $fieldname);
+        }
+        foreach ($_POST['register'] as $fieldname => $values) {
+            $array[$fieldname] = $values;
+        }
+        update('user', $array, $column_name);
+    }
+    if (isset($_POST['delete_category'])) {
+        $array = [];
+        $column_name = [];
+        foreach ($_POST['category'] as $fieldname => $values) {
+            array_push($column_name, $fieldname);
+        }
+        foreach ($_POST['category'] as $fieldname => $values) {
+            $array[$fieldname] = $values;
+        }
+        delete_row('category', $array, $column_name);
+    }
+    if (isset($_POST['delete_blog'])) {
+        $array = [];
+        $column_name = [];
+        foreach ($_POST['blog'] as $fieldname => $values) {
+            array_push($column_name, $fieldname);
+        }
+        foreach ($_POST['blog'] as $fieldname => $values) {
+            $array[$fieldname] = $values;
+        }
+        delete_row('blog_post', $array, $column_name);
+    }
     ?>
 </body>
 
