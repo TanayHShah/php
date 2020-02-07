@@ -11,34 +11,34 @@
 <body>
     <?php
     include 'registration_post.php';
-    if(!isset($_SESSION['id'])){
+    if (!isset($_SESSION['id'])) {
         echo header("Location:login.php");
     }
-    
-    $array=[];
+
+    $array = [];
     ?>
     <h2>UPDATE BLOG</h2>
     <form method="POST">
         <div>
-            <label>Title</label><input type="text" name="blog[Title]"  value="<?php echo getvalue('blog','Title')?>">
+            <label>Title</label><input type="text" name="blog[Title]" value="<?php echo getvalue('blog', 'Title') ?>">
         </div>
         <div>
-            <label>Content</label><textarea rows="3" cols="20" name="blog[Content]"  ><?php echo getvalue('blog','Content')?></textarea>
+            <label>Content</label><textarea rows="3" cols="20" name="blog[Content]"><?php echo getvalue('blog', 'Content') ?></textarea>
         </div>
         <div>
-            <label>URL</label><input type="text" name="blog[Url]" value="<?php echo getvalue('blog','Url')?>">
+            <label>URL</label><input type="text" name="blog[Url]" value="<?php echo getvalue('blog', 'Url') ?>">
         </div>
         <div>
-                <label>Image</label><input type="file" name="blog[image]">
-            </div>
-            <div>
+            <label>Image</label><input type="file" name="blog[image]">
+        </div>
+        <div>
             <input type="submit" value="UPDATE" name="submit_updated_blog">
-            </div>
+        </div>
     </form>
     <form action="blog_page.php">
         <input type="submit" value="BACK TO BLOG blog">
     </form>
-    
+
 </body>
 
 </html>

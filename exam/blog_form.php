@@ -11,10 +11,10 @@
 <body>
     <?php
     require 'registration_post.php';
-    if(!isset($_SESSION['id'])){
+    if (!isset($_SESSION['id'])) {
         echo header("Location:login.php");
     }
-    
+
     ?>
     <h2>ADD NEW blog</h2>
     <form method="POST">
@@ -25,7 +25,7 @@
             <label>Content</label><textarea rows="3" cols="20" name="blog[Content]"></textarea>
         </div>
         <div>
-            <label>URL</label><input type="text" name="blog[Url]" >
+            <label>URL</label><input type="text" name="blog[Url]">
         </div>
         <div>
             <div>

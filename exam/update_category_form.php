@@ -11,25 +11,25 @@
 <body>
     <?php
     include 'registration_post.php';
-    if(!isset($_SESSION['id'])){
+    if (!isset($_SESSION['id'])) {
         echo header("Location:login.php");
     }
-    
-    $array=[];
+
+    $array = [];
     ?>
     <h2>UPDATE CATEGORY</h2>
     <form method="POST">
         <div>
-            <label>Title</label><input type="text" name="category[Title]"  value="<?php echo getvalue('category','Title')?>">
+            <label>Title</label><input type="text" name="category[Title]" value="<?php echo getvalue('category', 'Title') ?>">
         </div>
         <div>
-            <label>Content</label><textarea rows="3" cols="20" name="category[Content]"  ><?php echo getvalue('category','Content')?></textarea>
+            <label>Content</label><textarea rows="3" cols="20" name="category[Content]"><?php echo getvalue('category', 'Content') ?></textarea>
         </div>
         <div>
-            <label>URL</label><input type="text" name="category[Url]" value="<?php echo getvalue('category','Url')?>">
+            <label>URL</label><input type="text" name="category[Url]" value="<?php echo getvalue('category', 'Url') ?>">
         </div>
         <div>
-            <label>Meta Title</label><input type="text" name="category[Meta_Title]"  value="<?php echo getvalue('category','Meta_Title')?>">
+            <label>Meta Title</label><input type="text" name="category[Meta_Title]" value="<?php echo getvalue('category', 'Meta_Title') ?>">
         </div>
         <div>
             <div>
@@ -38,11 +38,11 @@
                     <?php
                     $id = get_parent_id();
                     $name = get_parent_category();
-                    $array=array_combine($name,$id);
-                    foreach ($array as $key => $value): ?>
-                        <?php $value == getvalue('category', 'parent_category_id') ? $selected="selected" :$selected= "";?> 
-                      <option value=<?php echo $value?> <?php echo $selected?>   ><?php echo $key?></option>
-                      <?php endforeach; ?>
+                    $array = array_combine($name, $id);
+                    foreach ($array as $key => $value) : ?>
+                        <?php $value == getvalue('category', 'parent_category_id') ? $selected = "selected" : $selected = ""; ?>
+                        <option value=<?php echo $value ?> <?php echo $selected ?>><?php echo $key ?></option>
+                    <?php endforeach; ?>
 
                 </select>
             </div>
@@ -50,13 +50,13 @@
                 <label>Image</label><input type="file" name="image">
             </div>
             <div>
-            <input type="submit" value="UPDATE" name="submit_updated_category">
+                <input type="submit" value="UPDATE" name="submit_updated_category">
             </div>
     </form>
     <form action="category.php">
         <input type="submit" value="BACK TO BLOG CATEGORY">
     </form>
-    
+
 </body>
 
 </html>

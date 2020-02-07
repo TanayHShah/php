@@ -10,25 +10,25 @@
 
 <body>
     <?php
-     include 'registration_post.php';
-    if(!isset($_SESSION['id'])){
+    include 'registration_post.php';
+    if (!isset($_SESSION['id'])) {
         echo header("Location:login.php");
     }
-   
+
     ?>
     <h2>ADD NEW CATEGORY</h2>
     <form method="POST">
         <div>
-            <label>Title</label><input type="text" name="category[Title]"  value="<?php echo getvalue('category','Title')?>">
+            <label>Title</label><input type="text" name="category[Title]" value="<?php echo getvalue('category', 'Title') ?>">
         </div>
         <div>
-            <label>Content</label><textarea rows="3" cols="20" name="category[Content]"  value="<?php echo getvalue('category','Content')?>"></textarea>
+            <label>Content</label><textarea rows="3" cols="20" name="category[Content]" value="<?php echo getvalue('category', 'Content') ?>"></textarea>
         </div>
         <div>
-            <label>URL</label><input type="text" name="category[Url]" value="<?php echo getvalue('category','Url')?>">
+            <label>URL</label><input type="text" name="category[Url]" value="<?php echo getvalue('category', 'Url') ?>">
         </div>
         <div>
-            <label>Meta Title</label><input type="text" name="category[Meta_Title]"  value="<?php echo getvalue('category','Meta_Title')?>">
+            <label>Meta Title</label><input type="text" name="category[Meta_Title]" value="<?php echo getvalue('category', 'Meta_Title') ?>">
         </div>
         <div>
             <div>
@@ -48,7 +48,7 @@
                 <label>Image</label><input type="file" name="image">
             </div>
             <div>
-            <input type="submit" value="DELETE" name="delete_category">
+                <input type="submit" value="DELETE" name="delete_category">
             </div>
     </form>
     <form action="category.php">

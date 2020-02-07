@@ -10,21 +10,22 @@
 
 <body>
     <?php
-      session_start();
-  
-  
+    session_start();
+
+
     require 'connection.php';
     $error = [];
+    $error_update = [];
     function getvalue($sectionName, $fieldName)
-{
-    return isset($_POST[$sectionName][$fieldName])
-        ? $_POST[$sectionName][$fieldName]
-        :  getDatabasevalue($sectionName, $fieldName);
-}
-function getDatabasevalue($sectionName, $fieldName)
-{
-        $value= return_last_data($sectionName,$fieldName);
-    return $value;
+    {
+        return isset($_POST[$sectionName][$fieldName])
+            ? $_POST[$sectionName][$fieldName]
+            :  getDatabasevalue($sectionName, $fieldName);
+    }
+    function getDatabasevalue($sectionName, $fieldName)
+    {
+        $value = return_last_data($sectionName, $fieldName);
+        return $value;
     }
 
     function setDatabase($section)
@@ -46,8 +47,45 @@ function getDatabasevalue($sectionName, $fieldName)
 
         if (empty($error)) {
             (isset($_POST[$section])) ?  check_function($section) : [];
-            if($section=='blog'){
+            if ($section == 'blog') {
                 transaction_table();
+            }
+        }
+    }
+
+    function update_table($section)
+    {
+        global $error_update;
+        foreach ($_POST[$section] as $key => $value) {
+
+            if (!validate($key, $value)) {
+                echo "ENTER VALID " . $key . "<br>";
+                array_push($error_update, $key);
+            }
+        }
+
+        if (empty($error_update)) {
+            if (isset($_POST[$section])) {
+                switch ($section) {
+                    case 'register':
+                        $tablename = 'user';
+                        break;
+                    case 'blog':
+                        $tablename = 'blog_post';
+                        break;
+                    case 'category':
+                        $tablename = 'category';
+                        break;
+                }
+                $array = [];
+                $column_name = [];
+                foreach ($_POST[$section] as $fieldname => $values) {
+                    array_push($column_name, $fieldname);
+                }
+                foreach ($_POST[$section] as $fieldname => $values) {
+                    $array[$fieldname] = $values;
+                }
+                update($tablename, $array, $column_name);
             }
         }
     }
@@ -62,12 +100,12 @@ function getDatabasevalue($sectionName, $fieldName)
                     return 1;
                 }
                 break;
-                case 'Url':
-                    case 'Meta_Title':
-                        case 'Content':
-                        if(!is_numeric($value) && !empty($value))
-                        return 1;
-            break;
+            case 'Url':
+            case 'Meta_Title':
+            case 'Content':
+                if (!is_numeric($value) && !empty($value))
+                    return 1;
+                break;
             case 'Prefix':
                 return 1;
                 break;
@@ -85,7 +123,7 @@ function getDatabasevalue($sectionName, $fieldName)
                 if ($value == $_POST['confirm_password']) {
                     return 1;
                 }
-                default:
+            default:
                 return 1;
         }
     }
@@ -102,37 +140,13 @@ function getDatabasevalue($sectionName, $fieldName)
         setDatabase('blog');
     }
     if (isset($_POST['submit_updated_category'])) {
-        $array = [];
-        $column_name = [];
-        foreach ($_POST['category'] as $fieldname => $values) {
-            array_push($column_name, $fieldname);
-        }
-        foreach ($_POST['category'] as $fieldname => $values) {
-            $array[$fieldname] = $values;
-        }
-        update('category', $array, $column_name);
+        update_table('category');
     }
     if (isset($_POST['submit_updated_blog'])) {
-        $array = [];
-        $column_name = [];
-        foreach ($_POST['blog'] as $fieldname => $values) {
-            array_push($column_name, $fieldname);
-        }
-        foreach ($_POST['blog'] as $fieldname => $values) {
-            $array[$fieldname] = $values;
-        }
-        update('blog_post', $array, $column_name);
+        update_table('blog');
     }
     if (isset($_POST['update_user'])) {
-        $array = [];
-        $column_name = [];
-        foreach ($_POST['register'] as $fieldname => $values) {
-            array_push($column_name, $fieldname);
-        }
-        foreach ($_POST['register'] as $fieldname => $values) {
-            $array[$fieldname] = $values;
-        }
-        update('user', $array, $column_name);
+        update_table('register');
     }
     if (isset($_POST['delete_category'])) {
         $array = [];

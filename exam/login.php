@@ -28,7 +28,7 @@
             <div>
                 <input type="submit" name="submit_login" value="LOGIN">
 
-            </div>     
+            </div>
         </form>
         <form action="registration.php">
             <input type="submit" value="REGISTER">

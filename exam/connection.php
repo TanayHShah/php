@@ -47,7 +47,11 @@
             $array = [];
             $column_name = [];
             foreach ($_POST['register'] as $fieldname => $values) {
-                $array[$fieldname] = $values;
+                if ($fieldname == 'Password') {
+                    $array[$fieldname] = md5($values);
+                } else {
+                    $array[$fieldname] = $values;
+                }
             }
             foreach ($_POST['register'] as $fieldname => $values) {
                 array_push($column_name, $fieldname);
@@ -72,7 +76,8 @@
             $conn = connect();
             $email = $_POST['login']['Email'];
             $password = $_POST['login']['Password'];
-            $sql1 = "SELECT * from user WHERE Email= '$email'
+            $password = md5($password);
+            echo $sql1 = "SELECT * from user WHERE Email= '$email'
              AND Password='$password'; ";
             if (mysqli_query($conn, $sql1)) {
 
@@ -86,14 +91,11 @@
         function check_action()
         {
             global $session;
-            if (isset($_POST['submit_login'])) {
-                if (return_row() == 0) {
-                    echo  "ENTER VALID USERNAME AND PASSWORD";
-                } else {
-
-                    $session = set_ssession();
-                    return header("Location:blog_page.php");
-                }
+            if (return_row() == 0) {
+                echo  "ENTER VALID USERNAME AND PASSWORD";
+            } else {
+                $session = set_ssession();
+                return header("Location:blog_page.php");
             }
         }
         function get_parent_id()
@@ -178,9 +180,10 @@
         function view_table_blog($array)
         {
             global $array_blog;
+            $value = implode(' ', $_SESSION['id']);
             $array = $array_blog;
             $conn = connect();
-            $sql = $query = 'SELECT * FROM blog_post WHERE blog_id=blog_id';
+            $sql = $query = "SELECT * FROM blog_post WHERE customer_id= '$value';";
             $result = mysqli_query($conn, $sql);
             table_form($result, $array, 'blog_id');
         }
@@ -390,13 +393,14 @@
             $conn = connect();
             $email = $_POST['login']['Email'];
             $password = $_POST['login']['Password'];
+            $password = md5($password);
             $sql1 = "SELECT customer_id from user WHERE Email= '$email'
                      AND Password='$password'; ";
             if (mysqli_query($conn, $sql1)) {
 
                 $result = mysqli_query($conn, $sql1);
                 $_SESSION['id'] = mysqli_fetch_assoc($result);
-                echo $value = implode('', $_SESSION['id']);
+                $value = implode('', $_SESSION['id']);
                 return $value;
             } else {
                 echo mysqli_error($conn);
@@ -404,7 +408,7 @@
         }
         function transaction_table()
         {
-            $flag=[" "];
+            $flag = [" "];
             $value = [];
             $name = [];
             $id = implode('', check_last_key());
@@ -415,25 +419,36 @@
             if (mysqli_query($conn, $sql1)) {
                 $result = mysqli_query($conn, $sql1);
                 $result = mysqli_fetch_all($result);
-                print_r($result);
                 foreach ($result as $fieldkey => $key) {
                     array_push($value, implode($key));
                 }
             } else {
                 echo mysqli_error($conn);
             }
-            $value = sizeof($value) ;
-            if(!isset($_POST['display']['parent_blog_id']))
-            $_POST['display']['parent_blog_id']=$flag;
+            $value = sizeof($value)+1;
+            if (!isset($_POST['display']['parent_blog_id']))
+                $_POST['display']['parent_blog_id'] = $flag;
             foreach ($_POST['display']['parent_blog_id'] as  $key) {
                 $conn = connect();
-                echo $sql1 = "INSERT INTO post_id(parent_category_id,blog_id) VALUES('$key','$value')
+                $sql1 = "INSERT INTO post_id(parent_category_id,blog_id) VALUES('$key','$value')
                 ; ";
                 if (!mysqli_query($conn, $sql1)) {
                     echo mysqli_error($conn);
                 }
             }
             echo "TRANSACTION TABLE UPDATED";
+        }
+        function last_login()
+        {
+            $id = implode(' ', $_SESSION['id']);
+            $time = time();
+            $day = date('d M Y @ H:i:s', $time);
+            $conn = connect();
+            $sql1 = "UPDATE user SET Last_Login='$day' WHERE customer_id=$id;
+                ; ";
+            if (!mysqli_query($conn, $sql1)) {
+                echo mysqli_error($conn);
+            }
         }
         ?>
   </body>

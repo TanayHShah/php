@@ -21,13 +21,13 @@
     <form method="POST">
         <div>
             <label>Select One Of Prefix:</label>
-                <?php $prefix_Data = ['Mr', 'Mrs', 'Dr']; ?>
-                <select name="account[prefix]">
-                    <?php foreach ($prefix_Data as $value) : ?>
-                        <?php $selected = $value == getvalue('register', 'Prefix') ? "selected" : ""; ?>
-                        <option value="<?php echo $value; ?>" <?php echo $selected; ?>><?php echo $value; ?></option>
-                    <?php endforeach; ?>
-                </select>
+            <?php $prefix_Data = ['Mr', 'Mrs', 'Dr']; ?>
+            <select name="account[prefix]">
+                <?php foreach ($prefix_Data as $value) : ?>
+                    <?php $selected = $value == getvalue('register', 'Prefix') ? "selected" : ""; ?>
+                    <option value="<?php echo $value; ?>" <?php echo $selected; ?>><?php echo $value; ?></option>
+                <?php endforeach; ?>
+            </select>
         </div>
 
         <label>Enter First Name:</label><input type="text" name="register[First_Name]" value="<?php echo getvalue('register', 'First_Name') ?>">
@@ -38,7 +38,7 @@
         <div>
             <label>Enter Phone Number:</label><input type="text" name="register[Mobile]" value="<?php echo getvalue('register', 'Mobile') ?>"></div>
         <div>
-            <label>Enter Email:</label><input type="text" name="register[Email]" value="<?php echo getvalue('register', 'Email') ?>"></div >
+            <label>Enter Email:</label><input type="text" name="register[Email]" value="<?php echo getvalue('register', 'Email') ?>"></div>
         <div>
             <label>Enter Password:</label><input type="text" name="register[Password]" value="<?php echo getvalue('register', 'Password') ?>"></div>
         <div>
@@ -48,7 +48,7 @@
             <label>ENTER Information:</label><textarea rows="3" cols="20"></textarea>
         </div>
         <div>
-            <input type="submit" name="update_user" value="UDATE">
+            <input type="submit" name="update_user" value="UPDATE">
         </div>
     </form>
     <form action="blog_page.php">

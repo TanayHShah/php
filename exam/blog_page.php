@@ -23,11 +23,12 @@
 
 <body>
     <?php
-     include 'registration_post.php';
-    if(!isset($_SESSION['id'])){
+    include 'registration_post.php';
+    if (!isset($_SESSION['id'])) {
         header("Location:login.php");
     }
-   
+    last_login();
+
     ?>
     <div class="a">
         <a href="category.php">MANAGE CATEGORY</a>

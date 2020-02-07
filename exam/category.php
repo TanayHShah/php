@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
-        .a{
+        .a {
             float: left;
-            margin-right:50px; 
-            
+            margin-right: 50px;
+
         }
-        table,th,td,tr{
+
+        table,
+        th,
+        td,
+        tr {
             border: 1px solid black;
         }
-        </style>
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <?php
     include 'registration_post.php';
-    if(!isset($_SESSION['id'])){
+    if (!isset($_SESSION['id'])) {
         echo header("Location:login.php");
     }
-    
+
     ?>
     <div class="a">
         <a href="category.php">MANAGE CATEGORY</a>
@@ -33,19 +39,20 @@
     <div class="a">
         <a href="log_out.php">LOGOUT</a>
     </div>
-    <div >
-        <a href="blog_page.php">BLOCK PAGE</a>
+    <div>
+        <a href="blog_page.php">BLOG PAGE</a>
     </div>
     <div>
- <h2>BLOG CATEGORY</h2>  
+        <h2>BLOG CATEGORY</h2>
     </div>
- <div>
- <a href="category_form.php">ADD CATEGORY</a>
- </div>
-<div>
- <?php
- view_table($array_category);
- ?>
-</div>
+    <div>
+        <a href="category_form.php">ADD CATEGORY</a>
+    </div>
+    <div>
+        <?php
+        view_table($array_category);
+        ?>
+    </div>
 </body>
+
 </html>
