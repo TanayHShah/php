@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block title %}Posts{% endblock %} {% block body %}
+<h1>UPDATE CATEGORY</h1>
+
+    <div>
+        <form method="POST" action="/cybercom/php/MVC/public/Admin/Categories/updateData/{{ post.category_id }}">
+            <div>
+                <label>Enter Category Name:</label><input type="text" name="category_name" value="{{ post.category_name }}">
+            </div>
+            <div>
+                <label>Enter Category Description:</label><textarea name="description">{{ post.description }}</textarea>
+            </div>
+            <div>
+                <label>Select Category Image:</label><input type="file" name="image" value="{{ post.image }}">
+            </div>
+                <div>
+                    <label>Select Parent Category </label>
+                    <select name="parent_category_id">
+                      {% for category in categories %}
+                      <option value="{{ category.parent_category_id }}" {% if category.parent_category_id==post.parent_category_id %}
+                        selected {% endif %}>{{ category.parent_category_name }}</option
+                      >
+                      {% endfor %}
+                    </select>
+                  </div>
+            <div>
+                <input type="submit" value="UPDATE CATEGORY">
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

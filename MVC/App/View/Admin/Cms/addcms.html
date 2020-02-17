@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Page</title>
+</head>
+<body>
+    <div>
+        <form method="POST" action="/cybercom/php/MVC/public/Admin/CMS/pages/addCms">
+            <div>
+                <label>Enter Cms Title:</label><input type="text" name="page_title">
+            </div>
+            <div>
+                <label>Enter Cms Status:</label><input type="number" name="status">
+            </div>
+            <div>
+                <label>Enter Cms Content:</label><textarea name="content"></textarea>
+            </div>
+            <div>
+                <input type="submit" value="ADD PAGE">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,24 +1,34 @@
 <?php
 
 namespace App\Controller;
+
 use \Core\View;
+use \App\Model\home_page;
+use \App\Model\Category;
+
 class Home extends \Core\Controller
 {
+    function __construct()
+    {
+        $pages = home_page::getheader();
+        $categories = Category::displayParentCategory();
+        $category_name=Category::returnCategoryName();
+        View::renderTemplate(
+            'frontend.html',
+            ["pages" => $pages, "categories" => $categories,"category_name"=>$category_name]
+        );
+    }
     public function indexAction()
     {
-        // echo "Hello From Home Index";
-    //     View::render('Home/index.php',
-    //     ['name' =>'ABC','colours'=>['red','green']]);
-    // }
-    View::renderTemplate('Home/index.html',
-    ['name' =>'ABC','colours'=>['red','green']]);
-}
-    // protected function before() 
-    // {
-    //     echo "(before)";
-    // }
-    // protected function after()
-    // {
-    //     echo "(after)";
-    // }  
+        View::renderTemplate(
+            'Home/index.html'
+        );
+    }
+    public function viewAction($urlkey)
+    {
+        $url=$urlkey;
+        View::renderTemplate(
+            'Home/category.html',["url"=>$urlkey]
+        );
+    }
 }

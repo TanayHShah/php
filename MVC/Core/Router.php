@@ -62,21 +62,28 @@ class Router
         if ($this->match_regex($url)) {
             $controller = $this->param['controller'];
             $controller = $this->convertToStudlyCaps($controller);
-            $controller = "App\Controller\\$controller";
+            $controller = $this->getNamespace() . $controller;
             if (class_exists($controller)) {
                 $controller_object = new $controller($this->param);
                 $action = $this->param['action'];
                 $action = $this->convertToCamelCase($action);
                 if (is_callable([$controller_object, $action])) {
-                    $controller_object->$action();
+                    if (isset($this->param['urlkey'])) {
+                        $controller_object->$action($this->param['urlkey']);
+                    } else {
+                        $controller_object->$action();
+                    }
                 } else {
                     echo "Method $action (in controller $controller) not found";
+                    throw new \Exception("Method $action (in controller $controller) not found");
                 }
             } else {
                 echo "Controller class $controller not found";
+                throw new \Exception("Controller class $controller not found");
             }
         } else {
-            echo "No Route Matched";
+            // echo "No Route Matched";
+            throw new \Exception("No Route Matched", 404);
         }
     }
     protected function convertToStudlyCaps($string)
@@ -99,5 +106,13 @@ class Router
         }
         return $url;
     }
-   
+    protected function getNamespace()
+    {
+        $namespace = 'App\Controller\\';
+
+        if (array_key_exists('namespace', $this->param)) {
+            $namespace .= $this->param['namespace'] . '\\';
+        }
+        return $namespace;
+    }
 }

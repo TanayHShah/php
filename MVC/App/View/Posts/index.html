@@ -1,13 +1,19 @@
 
-
-    {% extends "base.html" %} {% block title %}Posts{% endblock %} {% block body
-    %}
-    <h1>Posts</h1>
-    <ul>
-        {% for post in posts %}
-        <h2>{{ post.title }}</h2>
-        <h2>{{ post.content }}</h2>
-        {% endfor %}
-    </ul>
-    {% endblock %}
-
+{% extends "base.html" %} {% block title %}Posts{% endblock %} {% block body %}
+<h1>Posts</h1>
+<table>
+    <tr>
+    <th>TITLE</th>
+    <th>CONTENT</th>
+    <th colspan="2">ACTION</th>
+</tr>
+  {% for post in posts %}
+  <tr>
+    <td>{{ post.title }}</td>
+    <td>{{ post.content }}</td>
+    <td><a href="/cybercom/php/MVC/public/Posts/{{ post.post_id }}/update">UPDATE</a></td>
+    <td><a href="/cybercom/php/MVC/public/Posts/{{ post.post_id }}/delete">DELETE</a></td>
+  </tr>
+</table>
+{% endfor %}
+{% endblock %}
