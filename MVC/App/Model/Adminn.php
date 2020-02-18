@@ -44,8 +44,8 @@ class Adminn extends \Core\Model
                     }
                 }
             }
-            $product_url = str_replace([" ", "&"], ["-", "%20"], strtolower($product_url));
-            $product_url = "'" . $product_url . "'";
+            $product_url = str_replace([" ", "&"], ["-", "and"], strtolower($product_url));
+            $product_url = "'" . $product_url . "-product'";
             $category = "'" . $category . "'";
             $tablefields = implode(",", $tablefield);
             $tableValues = "'" . implode("','", $tablevalue) . "'";

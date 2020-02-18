@@ -6,7 +6,7 @@ use \Core\View;
 use \App\Model\home_page;
 use \App\Model\Category;
 
-class Home extends \Core\Controller
+class productPage extends \Core\Controller
 {
     function __construct()
     {
@@ -18,20 +18,11 @@ class Home extends \Core\Controller
             ["pages" => $pages, "categories" => $categories, "category_name" => $category_name]
         );
     }
-    public function indexAction()
+    public function indexAction($urlkey)
     {
-        
-        $url=home_page::viewContent();
+        $product=home_page::returnProductDescription($urlkey);
         View::renderTemplate(
-            'Home/index.html'
-        );
-    }
-    public function viewAction($urlkey)
-    {
-        
-        $url=home_page::viewContent($urlkey);
-        View::renderTemplate(
-            'Home/index.html',["url"=>$url]
+            'Home/product.html',['products'=>$product]
         );
     }
 }

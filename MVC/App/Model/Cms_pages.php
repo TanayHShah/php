@@ -31,8 +31,8 @@ class Cms_pages extends \Core\Model
                     }
                 }
             }
-            $cms_url = str_replace([" ", "&"], ["-", "%20"], strtolower($cms_url));
-            $cms_url = "'" . $cms_url . "'";
+            $cms_url = str_replace([" ", "&"], ["-", "and"], strtolower($cms_url));
+            $cms_url = "'" . $cms_url . "-cms'";
             $tablefields = implode(",", array_keys($data));
             $tableValues = "'" . implode("','", array_values($data)) . "'";
             $tablefields = $tablefields . ",url_key";

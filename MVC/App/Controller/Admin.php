@@ -3,6 +3,7 @@
 namespace App\Controller;
 use \Core\View;
 use App\Model\adminn;
+use App\Model\Category;
 
 
 class Admin extends \Core\Controller

@@ -1,0 +1,32 @@
+{% extends "user.html" %} {% block title %}Home{% endblock %} {% block body %}
+{% if products==null %}
+<h2>No Products Available</h2>
+{% else %}
+<div style="float: left;margin-right: 100px;height: 500px;">
+  {% for product in products %}
+    <div>
+        <img
+          src="../../../public/image/category/{{ product.image }}"
+          width="400px"
+          height="400px"
+        />
+    </div>
+  {% endfor %}
+</div>
+<div >
+    {% for product in products %}
+    <div>
+        <h1>{{product.product_name}}</h1>
+    </div>
+    <div>
+        <h2>{{product.short_description}}</h2>
+    </div>
+    <div>
+        <h3>{{product.description}}</h3>
+    </div>
+    <div>
+        <h4>Rs {{product.price}}</h4>
+    </div>
+  {% endfor %}
+</div>
+  {% endif %} {% endblock %}

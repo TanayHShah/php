@@ -34,8 +34,8 @@ class Category extends \Core\Model
                     }
                 }
             }
-            $category_url = str_replace([" ", "&"], ["-", "%20"], strtolower($category_url));
-            $category_url = "'" . $category_url . "'";
+            $category_url = str_replace([" ", "&"], ["-", "and"], strtolower($category_url));
+            $category_url = "'" . $category_url . "-category'";
             $tablefields = implode(",", array_keys($data));
             $tableValues = "'" . implode("','", array_values($data)) . "'";
             $tablefields = $tablefields . ",url_key";

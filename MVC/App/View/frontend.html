@@ -47,25 +47,38 @@
       .dropdown:hover .dropbtn {
         background-color: black;
       }
+      .content{
+        font-size: xx-large;
+        color: blue;
+        font-style: italic;
+        font-weight: 1000;
+      }
+      .pricecontent{
+        font-size: x-large;
+        color: red;
+        font-weight: 500;
+      }
     </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
+    <div style="margin-bottom: 100px;margin-top: 50px;">
     {% for page in pages %}
-    <button class="dropbtn">{{ page.page_title }}</button>
+    <a href="http://localhost/cybercom/php/MVC/public/Home/view/{{ page.url_key }}" class="dropbtn">{{ page.page_title }}</a> 
     {% endfor %}
-  
+  </div>
+  <div>
       {% for category in categories %}
       <div class="dropdown">
     <button class="dropbtn">{{ category.parent_category_name }}</button>
     <div class="dropdown-content">
       {% for categories in category_name %} {% if
       categories.parent_category_id==category.parent_category_id %}
-      <a href="{{ categories.url_key }}">{{ categories.category_name }}</a>
+      <a href="http://localhost/cybercom/php/MVC/public/categoryPage/index/{{ categories.url_key }}">{{ categories.category_name }}</a>
       {% endif %} {% endfor %} </div> </div> {% endfor %}
-   
+    </div>
     {% block body %} {% endblock %}
   </body>
 </html>

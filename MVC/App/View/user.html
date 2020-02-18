@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <style>
-      table,tr,td,th{
+      table,
+      tr,
+      td,
+      th {
         border: 1px solid black;
       }
     </style>
@@ -11,11 +14,14 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-    {% block body %} {% endblock %}
-    <footer>
-        <p>Posted by: Tanay Shah</p>
+    {% block body %} {% endblock %} 
+    {% block footer %}
+    <br><div style="margin-top: 15%;">
+      <footer>
         <p>WORK DONE BY TANAY SHAH AND TEAM</p>
       </footer>
+    </div>
+
+    {% endblock %}
   </body>
 </html>
- 

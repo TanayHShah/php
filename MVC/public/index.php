@@ -19,6 +19,8 @@ $router->add('Admin/{controller}/{action}',['namespace' => 'Admin']);
 $router->add('Admin/cms/{controller}/{action}',['namespace' => 'Admin\CMS']);
 $router->add('Admin/cms/{controller}/{action}/{id:\d+}',['namespace' => 'Admin\CMS']);
 $router->add('Admin/{controller}/{action}/{id:\d+}',['namespace' => 'Admin']);
+$router->add('{controller}/{action}/{urlkey}');
+
 $url = $_SERVER['QUERY_STRING'];
 // if ($router->match($url)) {
 //     echo '<pre>';

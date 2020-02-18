@@ -3,6 +3,8 @@
     {% block title %}Home{% endblock %}
     {% block body %}
     <h1>Welcome</h1>
-    <p>HELLO</p>
+    {% for data in url %}
+    <p>{{ data.content }}</p>
+    {% endfor %}
     {% endblock %}
  
