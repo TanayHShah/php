@@ -9,8 +9,11 @@ class Router
     public function add($route, $parm = [])
     {
         $route = preg_replace('/\//', '\\/', $route);
-        $route = preg_replace('/\{([a-z0-9-]+)\}/', '(?P<\1>[a-z0-9-]+)', $route);
-        $route = preg_replace('/\{([a-z0-9-]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
+        $route = preg_replace('/\{([a-z-]+)\}/', '(?P<\1>[a-z-]+)', $route);
+        $route = preg_replace('/\{([a-z-]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
+        //convert variables eg. "urlKey"
+        $route = preg_replace('/\"([a-z-0-9 ]+)\"/', '(?P<\1>[a-z-0-9 ]+)', $route);
+
         $route = '/^' . $route . '$/i';
         $this->routes[$route] = $parm;
     }

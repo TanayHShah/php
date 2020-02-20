@@ -66,7 +66,38 @@ class home_page extends \Core\Model
         try {
             $db = static::getDB();
             $stmt = $db->query("SELECT *FROM products WHERE url_key = '$value'");
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    public static function userRegistration($data)
+    {
+        try {
+            $columnName = [];
+            $columnValue = [];
+            foreach ($data as $key => $value) {
+                array_push($columnName, $key);
+                array_push($columnValue, $value);
+            }
+            $key = implode(',', $columnName);
+            $value = "'".implode("','", $columnValue)."'";
+            $db = static::getDB();
+            $stmt = $db->query("INSERT INTO user ($key) VALUES ($value)");
+            echo "<script>alert(REGISTRATION COMPLETED);
+            window.location.replace('/cybercom/php/MVC/public/');</script>";
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    public static function userCheck($data){
+        try {
+            $db = static::getDB();
+            $email="'".$data['email']."'";
+            $password="'".$data['password']."'";
+            $stmt = $db->query("SELECT * FROM user WHERE email=$email AND password=$password ");
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result;
         } catch (PDOException $e) {
             echo $e->getMessage();

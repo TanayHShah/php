@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="http://localhost/cybercom/php/MVC/public/jquery-3.4.1.js"></script>
     <style>
       table,
       tr,
@@ -66,9 +67,12 @@
   <body>
     <div style="margin-bottom: 100px;margin-top: 50px;">
     {% for page in pages %}
-    <a href="http://localhost/cybercom/php/MVC/public/Home/view/{{ page.url_key }}" class="dropbtn">{{ page.page_title }}</a> 
+    <a href="http://localhost/cybercom/php/MVC/public/{{ page.url_key }}" class="dropbtn">{{ page.page_title }}</a> 
     {% endfor %}
   </div>
+  <div style="margin-bottom: 100px;margin-top: 50px;">
+    <!-- <button class="dropbtn" id="output" onclick="quantityCount()"></button>
+  </div> -->
   <div>
       {% for category in categories %}
       <div class="dropdown">
@@ -80,5 +84,17 @@
       {% endif %} {% endfor %} </div> </div> {% endfor %}
     </div>
     {% block body %} {% endblock %}
+    <script type="text/javascript">
+      function quantityCount() {
+        $.ajax({
+          method: "POST",
+          url: "http://localhost/cybercom/php/MVC/public/Cart/displayQuantity",
+          success:function(data){
+            $('#output').html(data);
+          }
+        });
+      }
+    
+    </script>
   </body>
 </html>

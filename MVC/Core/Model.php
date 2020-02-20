@@ -33,4 +33,7 @@ abstract class Model
         }
         return $db;
     }
+    public static function coree(){
+
+    }
 }

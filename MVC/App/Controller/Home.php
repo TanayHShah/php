@@ -20,7 +20,6 @@ class Home extends \Core\Controller
     }
     public function indexAction()
     {
-        
         $url=home_page::viewContent();
         View::renderTemplate(
             'Home/index.html'
@@ -34,4 +33,5 @@ class Home extends \Core\Controller
             'Home/index.html',["url"=>$url]
         );
     }
+    
 }

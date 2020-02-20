@@ -1,0 +1,24 @@
+{% extends "user.html" %} {% block title %}User{% endblock %} {% block body %}
+<h2>LOGIN</h2>
+<div>
+  <form method="POST" action="http://localhost/cybercom/php/MVC/public/User/registerUser">
+    <div>
+        <label>Enter Name:</label><input type="text" name="name" />
+      </div>
+    <div>
+      <label>Enter Email ID:</label><input type="text" name="email" />
+    </div>
+    <div>
+        <label>Enter Phone Number:</label><input type="text" name="phoneNumber" />
+      </div>
+    <div>
+      <label>Enter the password</label
+      ><input type="password" name="password" />
+    </div>
+    <div>
+      <input type="submit" value="Register" />
+    </div>
+  </form>
+</div>
+
+{% endblock %}

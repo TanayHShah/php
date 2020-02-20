@@ -1,4 +1,5 @@
 <?php
+session_start();
 // require 'D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\App\Controller\Home.php';
 // require '../Core/Router.php';
 require '../vendor/autoload.php';
@@ -7,7 +8,7 @@ set_error_handler('Core\Error::errorHandler');
 set_exception_handler('Core\Error::exceptionHandler');
 
 $router = new Core\Router();
-$router->add('', ['controller' => 'Home', 'action' => 'index']);
+$router->add('', ['controller' => 'User', 'action' => 'index']);
 $router->add('Home', ['controller' => 'Home', 'action' => 'index']);
 $router->add('{urlkey}', ['controller' => 'Home', 'action' => 'view']);
 // $router->add('posts', ['controller' => 'Posts', 'action' => 'index']);
@@ -19,7 +20,8 @@ $router->add('Admin/{controller}/{action}',['namespace' => 'Admin']);
 $router->add('Admin/cms/{controller}/{action}',['namespace' => 'Admin\CMS']);
 $router->add('Admin/cms/{controller}/{action}/{id:\d+}',['namespace' => 'Admin\CMS']);
 $router->add('Admin/{controller}/{action}/{id:\d+}',['namespace' => 'Admin']);
-$router->add('{controller}/{action}/{urlkey}');
+// $router->add('{controller}/{action}/{urlkey}');
+$router->add('{controller}/{action}/"urlkey"');
 
 $url = $_SERVER['QUERY_STRING'];
 // if ($router->match($url)) {
