@@ -15,13 +15,6 @@ use \App\Model\home_page;
             'Home/index.html',['data'=>$data]
         );
    }
-//     public function viewAction($urlkey)
-//     {
-        
-//         $url=home_page::viewContent($urlkey);
-//         View::renderTemplate(
-//             'Home/index.html',["url"=>$url]
-//         );
-//     }
+
     
  }

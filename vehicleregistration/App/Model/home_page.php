@@ -141,4 +141,5 @@ class home_page extends \Core\Model
             echo $e->getMessage();
         }
     }
+    
 }

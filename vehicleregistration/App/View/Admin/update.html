@@ -1,0 +1,46 @@
+{% extends "user.html" %} {% block title %}User{% endblock %} {% block body %}
+<h2>UPDATE</h2>
+<div>
+  <form method="POST" action="http://localhost/cybercom/php/vehicleregistration/public/Admin/{{services.serviceId }}/updateData">
+    <div>
+        <label>Enter Title:</label><input type="text" name="title" value="{{ services.title }}" />
+      </div>
+      <div>
+        <label>Enter Vehicle Number:</label><input type="text" name="vehicleNumber" value="{{ services.vehicleNumber }}"/>
+      </div>
+    <div>
+      <label>Enter License Number:</label><input type="text" name="licenceNumber" value="{{ services.licenceNumber }}"/>
+    </div>
+    <div>
+        <label>Select Date:</label><input type="date" name="date" value="{{ services.date }}"/>
+      </div>
+    <div>
+        <label>Enter Time Slot</label>
+            <select name="timeslot">
+                {% for i in range(9,17) %}
+                <option value="{{ i }}-{{ i+1 }}"  {% if services.timeslot == "{{ i }}-{{ i+1 }}" %}selected{% endif %}>{{ i }}-{{ i+1 }}</option>  
+                {% endfor %}
+              </select>
+      </div>
+    <div>
+      <label>Enter Vehilce Issue</label
+      ><input type="text" name="issue" value="{{services.issue}}"/>
+    </div>
+    <div>
+      <label>Select Service Center</label>
+      <select name="serviceCenter">
+          <option value="paldi" {% if services.timeslot == "paldi" %}selected{% endif %}>Paldi</option>
+          <option value="Bodakdev" {% if services.timeslot == "Bodakdev" %}selected{% endif %}>Bodakdev</option>
+      </select>
+    </div>
+    <div>
+        <label>Enter Status</label
+        ><input type="number" name="status" max="1" min="0" value="{{services.status}}"/>
+      </div>
+    <div>
+      <input type="submit" value="UPDATE" />
+    </div>
+  </form>
+</div>
+
+{% endblock %}
