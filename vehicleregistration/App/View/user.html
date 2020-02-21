@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid black;
+      }
+      .dropbtn {
+        background-color: red;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+      }
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .dropdown:hover .dropbtn {
+        background-color: black;
+      }
+      .content{
+        font-size: xx-large;
+        color: blue;
+        font-style: italic;
+        font-weight: 1000;
+      }
+      .pricecontent{
+        font-size: x-large;
+        color: red;
+        font-weight: 500;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    {% block body %} {% endblock %} 
+    {% block footer %}
+    <br><div style="margin-top: 15%;">
+      <footer>
+        <p>WORK DONE BY TANAY SHAH AND TEAM</p>
+      </footer>
+    </div>
+
+    {% endblock %}
+    <!-- <script>
+      function changestatus(){
+        $.ajax({
+          method: "POST",
+          url: "http://localhost/cybercom/php/MVC/public/Admin/changeStatus/{{ product.pro }}"
+        });
+      }
+    </script> -->
+  </body>
+</html>

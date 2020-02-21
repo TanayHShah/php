@@ -1,0 +1,81 @@
+{% extends "user.html" %} {% block title %}Home{% endblock %} {% block body %}
+<h1>Welcome</h1>
+<div>
+  <table style="margin-top: 20px;">
+    <tr>
+      <th>
+        USER ID
+      </th>
+      <th>
+        SERVICE ID
+      </th>
+      <th>
+        TITLE
+      </th>
+      <th>
+        LICENSE NUMBER
+      </th>
+      <th>
+        VEHICLE NUMBER
+      </th>
+      <th>
+        DATE
+      </th>
+      <th>
+        TIME SLOT
+      </th>
+      <th>
+        ISSUE
+      </th>
+      <th>
+        CENTER
+      </th>
+      <th>
+        STATUS
+      </th>
+      <th>
+          ACTION
+      </th>
+    </tr>
+    {% for services in data %}
+    <tr>
+      <td>
+        {{ services.userId}}
+      </td>
+      <td>
+        {{ services.serviceId}}
+      </td>
+      <td>
+        {{ services.title}}
+      </td>
+      <td>
+        {{ services.licenceNumber}}
+      </td>
+      <td>
+        {{services.vehicleNumber}}
+      </td>
+      <td>
+        {{services.date}}
+      </td>
+      <td>
+        {{services.timeslot}}
+      </td>
+      <td>
+        {{services.issue}}
+      </td>
+      <td>
+        {{services.serviceCenter}}
+      </td>
+      {% if services.status == 1 %}
+      <td>PENDING</td>
+      {% else %}
+      <td>COMPLETED</td>
+      {% endif %}
+      <td>
+        <a href="http://localhost/cybercom/php/vehicleregistration/public/Admin/checkStatus" onclick="changestatus()" class="dropbtn">CHANGE STATUS</a>
+    </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

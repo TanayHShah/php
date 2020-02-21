@@ -1,0 +1,21 @@
+[13-Feb-2020 16:18:00 Asia/Kolkata] <p>Throw in 'D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\Core\Controller.php'on line19</p>
+[13-Feb-2020 17:41:14 Asia/Kolkata] <p>Throw in 'D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\Core\Controller.php'on line19</p>
+[13-Feb-2020 17:42:30 Asia/Kolkata] <p>Throw in 'D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\Core\Controller.php'on line19</p>
+[13-Feb-2020 17:51:56 Asia/Kolkata] PHP Fatal error:  Uncaught Twig\Error\SyntaxError: Unexpected "}". in D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\App\View\500.html:1
+Stack trace:
+#0 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Lexer.php(279): Twig\Lexer->lexExpression()
+#1 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Lexer.php(180): Twig\Lexer->lexBlock()
+#2 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(460): Twig\Lexer->tokenize(Object(Twig\Source))
+#3 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(507): Twig\Environment->tokenize(Object(Twig\Source))
+#4 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', '500.html')
+#6 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\t in D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\App\View\500.html on line 1
+[13-Feb-2020 17:53:39 Asia/Kolkata] PHP Fatal error:  Uncaught Twig\Error\SyntaxError: Unexpected "}". in D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\App\View\404.html:1
+Stack trace:
+#0 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Lexer.php(279): Twig\Lexer->lexExpression()
+#1 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Lexer.php(180): Twig\Lexer->lexBlock()
+#2 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(460): Twig\Lexer->tokenize(Object(Twig\Source))
+#3 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(507): Twig\Environment->tokenize(Object(Twig\Source))
+#4 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', '404.html')
+#6 D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\vendor\twig\t in D:\cybercom creation\xamp\htdocs\cybercom\php\MVC\App\View\404.html on line 1

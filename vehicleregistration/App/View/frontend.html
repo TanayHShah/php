@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="http://localhost/cybercom/php/MVC/public/jquery-3.4.1.js"></script>
+    <style>
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid black;
+      }
+      .dropbtn {
+        background-color: red;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+      }
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .dropdown:hover .dropbtn {
+        background-color: black;
+      }
+      .content{
+        font-size: xx-large;
+        color: blue;
+        font-style: italic;
+        font-weight: 1000;
+      }
+      .pricecontent{
+        font-size: x-large;
+        color: red;
+        font-weight: 500;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <div style="margin-bottom: 100px;margin-top: 50px;">
+    {% for page in pages %}
+    <a href="http://localhost/cybercom/php/MVC/public/{{ page.url_key }}" class="dropbtn">{{ page.page_title }}</a> 
+    {% endfor %}
+    <a class="dropbtn" id="output"></a>
+  </div>
+  <div>
+      {% for category in categories %}
+      <div class="dropdown">
+    <button class="dropbtn">{{ category.parent_category_name }}</button>
+    <div class="dropdown-content">
+      {% for categories in category_name %} {% if
+      categories.parent_category_id==category.parent_category_id %}
+      <a href="http://localhost/cybercom/php/MVC/public/categoryPage/index/{{ categories.url_key }}">
+        {{ categories.category_name }}</a>
+      {% endif %} {% endfor %} </div> </div> {% endfor %}
+    </div>
+    {% block body %} {% endblock %}
+    <script type="text/javascript">
+     window.onload=function(){
+      quantityCount();
+     };
+      function quantityCount() {
+        $.ajax({
+          method: "POST",
+          url: "http://localhost/cybercom/php/MVC/public/Cart/displayQuantity",
+          success:function(data){
+            $('#output').html(data);
+          }
+        });
+      }
+    
+    </script>
+  </body>
+</html>

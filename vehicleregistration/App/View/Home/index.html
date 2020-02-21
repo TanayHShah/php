@@ -1,0 +1,70 @@
+
+    {% extends "user.html" %}
+    {% block title %}Home{% endblock %}
+    {% block body %}
+    <h1>Welcome</h1>
+    <div>
+ <a href="http://localhost/cybercom/php/vehicleregistration/public/User/serviceForm" class="dropbtn">ADD SERVICES</a>
+</div>
+<div>
+ <table style="margin-top: 20px;">
+     <tr>
+         <th>
+             SERVICE ID
+         </th>
+         <th>
+            TITLE
+        </th>
+        <th>
+            VEHICLE NUMBER
+        </th>
+        <th>
+            DATE
+        </th>
+        <th>
+            TIME SLOT
+        </th>
+        <th>
+            ISSUE
+        </th>
+        <th>
+            CENTER
+        </th>
+        <th>
+            STATUS
+        </th>
+     </tr>
+     {% for services in data %}
+     <tr>
+         <td>
+            {{ services.serviceId}}
+         </td>
+         <td>
+           {{ services.title}}
+        </td>
+        <td>
+            {{services.vehicleNumber}}
+        </td>
+        <td>
+            {{services.date}}
+        </td>
+        <td>
+            {{services.timeslot}}
+        </td>
+        <td>
+            {{services.issue}}
+        </td>
+        <td>
+            {{services.serviceCenter}}
+        </td>
+            {% if services.status == 1  %}
+            <td>PENDING</td>
+            {% else %}
+            <td>COMPLETED</td>
+            {% endif %}
+     </tr>
+     {% endfor %}
+ </table>
+</div>
+    {% endblock %}
+ 

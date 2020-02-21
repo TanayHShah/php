@@ -1,0 +1,42 @@
+{% extends "user.html" %} {% block title %}User{% endblock %} {% block body %}
+<h2>LOGIN</h2>
+<div>
+  <form method="POST" action="http://localhost/cybercom/php/vehicleregistration/public/User/registerUser">
+    <div>
+        <label>Enter First Name:</label><input type="text" name="user[firstName]" />
+      </div>
+      <div>
+        <label>Enter Last Name:</label><input type="text" name="user[lastName]" />
+      </div>
+    <div>
+      <label>Enter Email ID:</label><input type="text" name="user[email]" />
+    </div>
+    <div>
+        <label>Enter Phone Number:</label><input type="text" name="user[phoneNumber]" />
+      </div>
+    <div>
+      <label>Enter the password</label
+      ><input type="password" name="user[password]" />
+    </div>
+    <div>
+      <label>Enter Street:</label><input type="text" name="address[street]" />
+    </div>
+    <div>
+      <label>Enter City:</label><input type="text" name="address[city]" />
+    </div>
+    <div>
+      <label>Enter State:</label><input type="text" name="address[state]" />
+    </div>
+    <div>
+      <label>Enter Zipcode:</label><input type="number" name="address[zipcode]" />
+    </div>
+    <div>
+      <label>Enter Country:</label><input type="text" name="address[country]" />
+    </div>
+    <div>
+      <input type="submit" value="Register" />
+    </div>
+  </form>
+</div>
+
+{% endblock %}

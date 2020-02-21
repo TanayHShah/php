@@ -1,0 +1,25 @@
+{% extends "user.html" %} {% block title %}User{% endblock %} {% block body %}
+<h2>LOGIN</h2>
+<div>
+  <form method="POST" action="http://localhost/cybercom/php/vehicleregistration/public/User/checkLogin">
+    <div>
+      <label>Enter Email ID:</label><input type="text" name="email" />
+    </div>
+    <div>
+      <label>Enter the password</label
+      ><input type="password" name="password" />
+    </div>
+    <div>
+      <input type="submit" value="Login" />
+    </div>
+  </form>
+</div>
+<div>
+    <h3>New User Click On The Below Button To Register</h3>
+</div>
+<div>
+<form method="POST" action="http://localhost/cybercom/php/vehicleregistration/public/User/Register">
+    <input type="submit" value="Register">
+</form>
+</div>
+{% endblock %}

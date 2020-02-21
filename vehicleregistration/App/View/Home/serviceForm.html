@@ -1,0 +1,42 @@
+{% extends "user.html" %} {% block title %}User{% endblock %} {% block body %}
+<h2>LOGIN</h2>
+<div>
+  <form method="POST" action="http://localhost/cybercom/php/vehicleregistration/public/User/service">
+    <div>
+        <label>Enter Title:</label><input type="text" name="title" />
+      </div>
+      <div>
+        <label>Enter Vehicle Number:</label><input type="text" name="vehicleNumber" />
+      </div>
+    <div>
+      <label>Enter License Number:</label><input type="text" name="licenceNumber" />
+    </div>
+    <div>
+        <label>Select Date:</label><input type="date" name="date" />
+      </div>
+    <div>
+        <label>Enter Time Slot</label>
+            <select name="timeslot">
+                {% for i in range(9,17) %}
+                <option value="{{ i }}-{{ i+1 }}">{{ i }}-{{ i+1 }}</option>  
+                {% endfor %}
+              </select>
+      </div>
+    <div>
+      <label>Enter Vehilce Issue</label
+      ><input type="text" name="issue" />
+    </div>
+    <div>
+      <label>Select Service Center</label>
+      <select name="serviceCenter">
+          <option value="paldi">Paldi</option>
+          <option value="Bodakdev">Bodakdev</option>
+      </select>
+    </div>
+    <div>
+      <input type="submit" value="BOOK" />
+    </div>
+  </form>
+</div>
+
+{% endblock %}
